@@ -13,5 +13,5 @@ Add a valid [Zillow Web Services key](https://www.zillow.com/howto/api/APIOvervi
 
 ## Run API tests
 ```
-rspec ./spec/test_api.spec.rb
+rspec
 ```

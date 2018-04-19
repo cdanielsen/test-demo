@@ -3,7 +3,7 @@ require 'nori'
 
 RSpec.describe 'ZillowApi' do
   describe "The DeepSearch endpoint" do
-    it "responds with a 200 for a valid request" do
+    it "responds with the correct information for a valid request" do
       conn = Faraday.new(:url => 'https://www.zillow.com/')
       response = conn.get('webservice/GetDeepSearchResults.htm') do |req|
         req.params['zws-id'] = ENV['ZILLOW_KEY']
