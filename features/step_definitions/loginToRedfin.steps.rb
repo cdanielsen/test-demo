@@ -3,7 +3,7 @@ require 'capybara/cucumber'
 require 'capybara/dsl'
 require 'selenium-webdriver'
 
-require_relative '../page_objects/redfin.po'
+require_relative '../page_objects/RedfinHome.po'
 rf = RedFinHomePage.new
 
 Given("I load the redfin.com login form") do

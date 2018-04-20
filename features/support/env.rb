@@ -8,6 +8,6 @@ Capybara.configure do | config |
     config.default_driver = :selenium_chrome
   end
   config.run_server = false
-  config.default_max_wait_time = 10
+  config.default_max_wait_time = 5
   config.app_host = 'https://www.redfin.com'
 end
