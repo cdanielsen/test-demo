@@ -22,7 +22,12 @@ Add a valid [Zillow Web Services key](https://www.zillow.com/howto/api/APIOvervi
 rspec
 ```
 
-## Run UI Tests
+## Run UI Tests (with browser)
 ```
 cucumber
+```
+
+## Run UI Tests (headless)
+```
+cucumber CI=true
 ```
