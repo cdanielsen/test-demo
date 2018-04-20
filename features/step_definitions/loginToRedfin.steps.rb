@@ -8,7 +8,6 @@ rf = RedFinHomePage.new
 
 Given("I load the redfin.com login form") do
   visit('/')
-  save_and_open_screenshot
   expect(page).to have_title(rf.homePageTitleText)
 
   find(rf.loginButton).click
