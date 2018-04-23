@@ -25,6 +25,12 @@ When("I enter three filters into the search page") do
   # Houses only
   find(rfsr.houseFilterButton).click
   expect(page).to have_selector(rfsr.houseFilterButtonClickedState)
+  
+  # At least 2 bedrooms
+  find('span.minBeds .input').click()
+  find_all('span.minBeds .flyout .option').at(3).click
+  text = find(rfsr.bedsValueDisplay).text
+  expect(text).to eq('2')
 
   # At least 2 bathrooms
   find(rfsr.bathsIncrementButton).click.click.click
@@ -38,10 +44,18 @@ When("I enter three filters into the search page") do
   # Apply filters
   find(rfsr.applyFiltersButton).click
   find(rfsr.tableViewLink).click
+
+  # TODO: Refactor this into a dynamic wait
+  sleep(2)
 end
 
 Then("I should only get back results that meet those filters") do
-  find_all('.TableView table .tableRow .col_baths').each do | numberOfBathsEl |
+  find_all(rfsr.resultsBedCells).each do | numberOfBedsEl |
+    numberOfBeds = numberOfBedsEl.text.to_i
+    expect(numberOfBeds >= 2).to be(true)
+  end
+
+  find_all(rfsr.resultsBathCells).each do | numberOfBathsEl |
     numberOfBaths = numberOfBathsEl.text.to_i
     expect(numberOfBaths >= 2).to be(true)
   end
