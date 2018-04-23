@@ -18,9 +18,31 @@ Given("I perform a basic search for homes in Portland, OR") do
 end
 
 When("I enter three filters into the search page") do
-  pending # Write code here that turns the phrase above into concrete actions
+  # Pull up full filter list
+  find(rfsr.moreFiltersLink).click
+  expect(page).to have_selector(rfsr.houseFilterButton)
+  
+  # Houses only
+  find(rfsr.houseFilterButton).click
+  expect(page).to have_selector(rfsr.houseFilterButtonClickedState)
+
+  # At least 2 bathrooms
+  find(rfsr.bathsIncrementButton).click.click.click
+  text = find(rfsr.bathsValueDisplay).text
+  expect(text).to eq('2+')
+
+  # Search by owner only to limit managing timing for heavy MLS api call
+  find(rfsr.listingStatusMoreOptions).click
+  find(rfsr.mlsListingsCheckbox).click
+
+  # Apply filters
+  find(rfsr.applyFiltersButton).click
+  find(rfsr.tableViewLink).click
 end
 
 Then("I should only get back results that meet those filters") do
-  pending # Write code here that turns the phrase above into concrete actions
+  find_all('.TableView table .tableRow .col_baths').each do | numberOfBathsEl |
+    numberOfBaths = numberOfBathsEl.text.to_i
+    expect(numberOfBaths >= 2).to be(true)
+  end
 end
