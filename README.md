@@ -4,10 +4,12 @@ A demonstration of using Ruby libraries to create API and UI level tests
 
 ## Setup
 
-Configured to use chromedriver. On OS X, easy install via
+A recently installed version of Firefox
+
+Configured to use selenium / geckodriver. On OS X, easy install via
 
 ```
-brew cask install chromedriver
+brew install geckodriver
 ```
 
 ```
@@ -25,9 +27,4 @@ rspec
 ## Run UI Tests (with browser)
 ```
 cucumber
-```
-
-## Run UI Tests (headless)
-```
-cucumber CI=true
 ```
